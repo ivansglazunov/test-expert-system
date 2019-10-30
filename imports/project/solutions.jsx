@@ -33,8 +33,6 @@ export const Solutions = ({ symptom }: { symptom: string }) => {
     }, 1000));
   }, [symptom]);
 
-  console.log(data.symptoms);
-
   return <>
     {time && loading ? <LinearProgress /> : <LinearProgress variant="determinate" value={0}/>}
     {!!symptom.trim() && loading && <>
