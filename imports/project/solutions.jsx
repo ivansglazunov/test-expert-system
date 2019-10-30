@@ -35,21 +35,19 @@ export const Solutions = ({ symptom }: { symptom: string }) => {
 
   return <>
     {time && loading ? <LinearProgress /> : <LinearProgress variant="determinate" value={0}/>}
-    {!!symptom.trim() && loading && <>
+    {!!symptom.trim() && !loading && !!data && (
       <List>
-        {!!data && <>
-          {data.symptoms.map(symptom => (<React.Fragment key={symptom.id}>
-            <ListItem key={symptom.id} disabled>
-              <ListItemText>{symptom.value}</ListItemText>
+        {data.symptoms.map(symptom => (<React.Fragment key={symptom.id}>
+          <ListItem key={symptom.id} disabled>
+            <ListItemText>{symptom.value}</ListItemText>
+          </ListItem>
+          {data.symptoms.length === 1 && symptom.solutions.map(solution => (
+            <ListItem key={solution.id}>
+              <ListItemText>{solution.value}</ListItemText>
             </ListItem>
-            {data.symptoms.length === 1 && symptom.solutions.map(solution => (
-              <ListItem key={solution.id}>
-                <ListItemText>{solution.value}</ListItemText>
-              </ListItem>
-            ))}
-          </React.Fragment>))}
-        </>}
+          ))}
+        </React.Fragment>))}
       </List>
-    </>}
+    )}
   </>;
 };
